@@ -12,6 +12,7 @@ var wakeupImage = "https://s3.amazonaws.com/media.skillcrush.com/skillcrush/wp-c
 
 
 
+
 var updateClock = function() {
     var lolcat = document.getElementById('lolcat');
     var message = document.getElementById('timeEvent');
@@ -81,3 +82,44 @@ var showCurrentTime = function() {
 updateClock();
 var oneSecond = 1000;
 setInterval(updateClock, oneSecond);
+
+
+// party time button function
+var partyTimeButton = document.getElementById("partyTimeButton");
+var isPartyTime = false;
+
+var partyEvent = function() {
+    if (isPartyTime === false) {
+        isPartyTime = true;
+        time = partyTime;
+        partyTimeButton.innerText = "Party Time!";
+        partyTimeButton.style.backgroundColor = "#222";
+    } else {
+        isPartyTime = false;
+        time = new Date().getHours();
+        partyTimeButton.innerText = "This party is over.";
+        partyTimeButton.style.backgroundColor = "#0A8DAB";
+    }
+};
+
+partyTimeButton.addEventListener("click", partyEvent);
+
+var napTimeSelector = document.getElementById("napTimeSelector");
+var lunchTimeSelector = document.getElementById("lunchTimeSelector")
+var wakeUpTimeSelector = document.getElementById("wakeUpTimeSelector");
+
+var wakeUpEvent = function() {
+    wakeupTime = wakeUpTimeSelector.value;
+};
+
+var lunchEvent = function() {
+    lunchTime = lunchTimeSelector.value;
+};
+
+var napEvent = function () {
+    napTime = napTimeSelector.value;
+};
+
+wakeUpTimeSelector.addEventListener('change', wakeUpEvent);
+lunchTimeSelector.addEventListener('change', lunchEvent);
+napTimeSelector.addEventListener('change', napEvent);
